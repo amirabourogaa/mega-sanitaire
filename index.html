@@ -83,7 +83,7 @@
                 Mega Sanitaire est une entreprise de recyclage de plastique.
               </h2>
               <p data-aos="fade-up" data-aos-delay="200">
-                Mega Sanitaire is a plastic recycling and manufacturing company.
+                Mega Sanitaire is a plastic recycling company.
               </p>
               <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
                 <!-- <a href="#about" class="btn-get-started">Get Started</a> -->
@@ -658,72 +658,105 @@
             <!-- Fin Informations de contact -->
 
             <!-- Formulaire de contact -->
-            <div class="col-lg-6">
-              <form
-                id="myForm"
-               
-                method="post"
-                class="php-email-form"
-                data-aos="fade-up"
-                data-aos-delay="500"
-              >
-                <div class="row gy-4">
-                  <div class="col-md-6">
-                    <input
-                      id="name"
-                      type="text"
-                      name="name"
-                      class="form-control"
-                      placeholder="Votre nom"
-                      required=""
-                    />
-                  </div>
+<div class="col-lg-6">
+  <form
+    id="myForm"
+    method="post"
+    class="php-email-form"
+    data-aos="fade-up"
+    data-aos-delay="500"
+  >
+    <div class="row gy-4">
+      <!-- Nom -->
+      <div class="col-md-6">
+        <input
+          id="name"
+          type="text"
+          name="name"
+          class="form-control"
+          placeholder="Votre nom"
+          required=""
+        />
+      </div>
 
-                  <div class="col-md-6">
-                    <input
-                      id="to"
-                      type="email"
-                      class="form-control"
-                      name="email"
-                      placeholder="Votre email"
-                      required=""
-                    />
-                  </div>
+      <!-- Email -->
+      <div class="col-md-6">
+        <input
+          id="to"
+          type="email"
+          class="form-control"
+          name="email"
+          placeholder="Votre email"
+          required=""
+        />
+      </div>
 
-                  <div class="col-md-12">
-                    <input
-                      id="subject"
-                      type="text"
-                      class="form-control"
-                      name="subject"
-                      placeholder="Objet"
-                      required=""
-                    />
-                  </div>
+      <!-- Objet -->
+      <div class="col-md-12">
+        <input
+          id="subject"
+          type="text"
+          class="form-control"
+          name="subject"
+          placeholder="Objet"
+          required=""
+        />
+      </div>
 
-                  <div class="col-md-12">
-                    <textarea
-                      id="message"
-                      class="form-control"
-                      name="message"
-                      rows="4"
-                      placeholder="Message"
-                      required=""
-                    ></textarea>
-                  </div>
+      <!-- Choix Achat/Vente -->
+      <div class="col-md-12">
+        <select id="transactionType" class="form-control" required="">
+          <option value="" disabled selected>Choisissez Achat/Vente</option>
+          <option value="achat">Achat</option>
+          <option value="vente">Vente</option>
+        </select>
+      </div>
 
-                  <div class="col-md-12 text-center">
-                    <div class="loading">Chargement...</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">
-                      Votre message a bien été envoyé. Merci !
-                    </div>
-                    <button type="submit">Envoyer</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <!-- Fin formulaire de contact -->
+      <!-- Nom du produit -->
+      <div class="col-md-12">
+        <input
+          id="productName"
+          type="text"
+          class="form-control"
+          name="productName"
+          placeholder="Nom du produit"
+          required=""
+        />
+      </div>
+
+      <!-- Quantité -->
+      <div class="col-md-12">
+        <input
+          id="quantity"
+          type="number"
+          class="form-control"
+          name="quantity"
+          placeholder="Quantité"
+          required=""
+        />
+      </div>
+
+      <!-- Message -->
+      <div class="col-md-12">
+        <textarea
+          id="message"
+          class="form-control"
+          name="message"
+          rows="4"
+          placeholder="Message"
+          required=""
+        ></textarea>
+      </div>
+
+      <!-- Bouton de soumission -->
+      <div class="col-md-12 text-center">
+        <button type="submit">Envoyer</button>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- Fin formulaire de contact -->
+
           </div>
         </div>
       </section>
@@ -826,52 +859,64 @@
     ></script>
 
     <script>
-      // Initialize EmailJS with your user ID
-      emailjs.init('eOlZLHyxTrJ1ZnYg-')
+     // Initialize EmailJS with your user ID
+emailjs.init('eOlZLHyxTrJ1ZnYg-')
 
-      // Get reference to the form element
-      const form = document.getElementById('myForm')
+// Get reference to the form element
+const form = document.getElementById('myForm')
 
-      // Attach an event listener to the form's submit event
-      form.addEventListener('submit', function (event) {
-        event.preventDefault() // Prevent the default form submission
+// Attach an event listener to the form's submit event
+form.addEventListener('submit', function (event) {
+  event.preventDefault() // Prevent the default form submission
 
-        // Get form values
-        const to = document.getElementById('to').value
-        const from_name = document.getElementById('name').value
-        const subject = document.getElementById('subject').value
-        const message = document.getElementById('message').value
-        const params = {
-          from_name,
-          to,
-          subject,
-          message
-        }
+  // Get form values
+  const to = document.getElementById('to').value
+  const from_name = document.getElementById('name').value
+  const subject = document.getElementById('subject').value
+  const transactionType = document.getElementById('transactionType').value
+  const productName = document.getElementById('productName').value
+  const quantity = document.getElementById('quantity').value
+  const message = document.getElementById('message').value
 
-        console.log(params)
-        // Use the EmailJS send method
-        emailjs
-          .send('service_0ltc8qj', 'template_87eid1m', {
-            subject: subject,
-            from_name: from_name,
-            message: message,
-            reply_to: to
-          })
-          .then(
-            function (response) {
-              Swal.fire({
-                icon: 'success',
-                title: 'Done',
-                text: 'Votre message a bien été envoyé.',
-                footer: '<a href="">Merci !</a>'
-              })
-            },
-            function (error) {
-              console.log(error)
-              alert('Email non envoyé:', error)
-            }
-          )
-      })
+  // Prepare the parameters for EmailJS
+  const params = {
+    from_name,
+    to,
+    subject,
+    transactionType,
+    productName,
+    quantity,
+    message
+  }
+
+  // Debugging - log the form data
+  console.log(params)
+
+  // Use the EmailJS send method
+  emailjs
+    .send('service_0ltc8qj', 'template_87eid1m', {
+      subject: subject,
+      from_name: from_name,
+      transactionType:transactionType,
+
+      message: message + `\nType de transaction: ${transactionType}\nProduit: ${productName}\nQuantité: ${quantity}`,
+      reply_to: to
+    })
+    .then(
+      function (response) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Message envoyé',
+          text: 'Votre message a bien été envoyé. Merci !',
+          footer: '<a href="">Continuer</a>'
+        })
+      },
+      function (error) {
+        console.log(error)
+        alert('Email non envoyé:', error)
+      }
+    )
+})
     </script>
   </body>
 </html>
